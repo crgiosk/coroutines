@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2019, The Android Open Source Project
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
-<!-- Wrapping the layout into /layout to make it available with data binding. -->
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -24,7 +8,7 @@
          click handlers, and state variables. -->
     <data>
         <variable
-            name="sleepTrackerViewModel"
+            name="sleepTrackerViewModelXml"
             type="com.example.android.trackmysleepquality.sleeptracker.SleepTrackerViewModel" />
 
     </data>
@@ -35,9 +19,10 @@
         android:layout_height="match_parent"
         tools:context=".sleeptracker.SleepTrackerFragment">
 
-        <!-- Simplest way of displaying scrollable text and data. There is a
-             better and more efficient way to do this, and you will learn about
-             RecyclerView in a later lesson. -->
+
+        <!-- La forma más sencilla de mostrar texto y datos desplazables. Hay un
+        forma mejor y más eficiente de hacer esto, y aprenderá sobre
+        RecyclerView en una lección posterior. -->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -59,7 +44,7 @@
                 android:layout_marginStart="@dimen/margin"
                 android:layout_marginTop="@dimen/margin"
                 android:layout_marginEnd="@dimen/margin"
-                android:text="@string/how_was_hour_sleep" />
+                android:text="@{sleepTrackerViewModelXml.nightString}" />
         </ScrollView>
 
         <!-- With data binding and LiveData, we can track the buttons' visibility states
@@ -73,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
             android:text="@string/start"
+            android:onClick="@{() -> sleepTrackerViewModelXml.onStartTracking() }"
             app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
             app:layout_constraintHorizontal_chainStyle="spread"

@@ -47,7 +47,7 @@ class SleepTrackerFragment : Fragment() {
 
         views.setLifecycleOwner(this)
 
-        views.sleepTrackerViewModel = sleepTrackerViewModel
+        views.sleepTrackerViewModelXml = sleepTrackerViewModel
 
         return views.root
     }
